@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 public class CustomPortalApiRegistry {
-    protected static final ConcurrentHashMap<Block, PortalLink> portals = new ConcurrentHashMap<>();
+    protected static final ConcurrentHashMap<Identifier, PortalLink> portals = new ConcurrentHashMap<>();
     private static final ConcurrentHashMap<Identifier, PortalFrameTester.PortalFrameTesterFactory> PortalFrameTesters = new ConcurrentHashMap<>();
 
     public static PortalLink getPortalLinkFromBase(Block baseBlock) {
@@ -47,7 +47,7 @@ public class CustomPortalApiRegistry {
         if (CustomPortalsMod.getDefaultPortalBlock() == null)
             CustomPortalsMod.logError("Built in CustomPortalBlock is null");
 
-        if (portals.containsKey(frameBlock) || frameBlock.equals(Blocks.OBSIDIAN)) {
+        if (portals.containsKey(link.id) || frameBlock.equals(Blocks.OBSIDIAN)) {
             CustomPortalsMod.logError("A portal(or the nether portal) is already registered with a frame of: " + frameBlock);
         } else {
             forceAddPortal(frameBlock, link);
@@ -56,6 +56,6 @@ public class CustomPortalApiRegistry {
 
     @Deprecated
     public static void forceAddPortal(Block frameBlock, PortalLink link) {
-        portals.put(frameBlock, link);
+        portals.put(link.id, link);
     }
 }

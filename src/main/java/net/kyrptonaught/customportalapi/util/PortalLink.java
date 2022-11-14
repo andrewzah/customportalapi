@@ -17,6 +17,8 @@ import net.minecraft.util.Identifier;
 import java.util.function.Consumer;
 
 public class PortalLink {
+    public Identifier id;
+
     public Identifier block;
     public PortalIgnitionSource portalIgnitionSource = PortalIgnitionSource.FIRE;
     private CustomPortalBlock portalBlock = CustomPortalsMod.portalBlock;
